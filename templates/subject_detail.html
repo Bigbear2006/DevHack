@@ -9,5 +9,9 @@
         <p>{{subject.description}}</p>
         <p>{{subject.training_level}}</p>
         <p>{{subject.USE}}</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" name="enrollment">Записаться на обучение</button>
+        </form>
 </body>
 </html>

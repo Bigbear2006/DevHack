@@ -1,5 +1,5 @@
 import django.views.generic as gnr
-from .models import News, Teacher, Subject
+from .models import News, Teacher, Subject, Enrollment
 
 
 class NewsListView(gnr.ListView):
@@ -37,3 +37,14 @@ class SubjectDetailView(gnr.DetailView):
     model = Subject
     template_name = 'subject_detail.html'
     context_object_name = 'subject'
+
+    def post(self, request, *args, **kwargs):
+        subj = self.get_object()
+        user = request.user
+        if 'enrollment' in request.POST:
+            if user.is_authenticated:
+                try:
+                    Enrollment.objects.get(subject=subj, user=user)
+                except Enrollment.DoesNotExist:
+                    Enrollment.objects.create(subject=subj, user=user)
+        return super().get(request, *args, **kwargs)

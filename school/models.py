@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth import get_user_model
 
 
 class News(models.Model):
@@ -38,3 +39,13 @@ class Subject(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Enrollment(models.Model):
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_query_name='subject')
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_query_name='user')
+    date = models.DateField(auto_now_add=True, null=True)
+
+    def __str__(self):
+        return self.user.username
+

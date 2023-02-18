@@ -6,6 +6,9 @@
     <title>Title</title>
 </head>
 <body>
+    <form method="get" action="{% url 'schedule' %}">
+        <input name="q" type="text" placeholder="Поиск...">
+    </form>
     <a href="{% url 'teachers' %}">Преподаватели</a> | <a href="{% url 'subjects' %}">Предметы</a><p></p>
     <a href="{% provider_login_url 'google' %}">Войти</a>
     {% for news in all_news %}
