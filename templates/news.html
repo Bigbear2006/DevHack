@@ -1,20 +1,173 @@
-{% load socialaccount %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <form method="get" action="{% url 'schedule' %}">
-        <input name="q" type="text" placeholder="Поиск...">
-    </form>
-    <a href="{% url 'teachers' %}">Преподаватели</a> | <a href="{% url 'subjects' %}">Предметы</a><p></p>
-    <a href="{% provider_login_url 'google' %}">Войти</a>
-    {% for news in all_news %}
-    <a href="{%url 'news_detail' news.slug %}"><h3>{{news.title}}</h3></a>
-    <img src="{{news.image.url}}" height="255.8" width="354">
-    <p>{{news.get_about_text}}</p>
-    {% endfor %}
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+        body{
+            background-color: #EFEFFF;
+        }
+        /*--------------------------------------------------------------------------------------------------------------------*/
+        .wrapper{
+            min-height: 100%;
+        }
+        /*--------------------------------------------------------------------------------------------------------------------*/
+        ._container{
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        /*-----Header---------------------------------------------------------------------------------------------------------*/
+        .header__container{
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 2px solid #8ecbef;
+        }
+        .header__logo img{
+            max-width: 135px;
+            min-height: 115px;
+        }
+        .menu{
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+        .menu__list{
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+        .menu__item{
+            list-style-type: none;
+            text-align: center;
+        }
+        .menu__link{
+            text-decoration: none;
+            text-align: center;
+            color: #707070;
+            font: lighter 33px/34px "Bahnschrift Condensed", sans-serif;
+        }
+        /*-----Main-----------------------------------------------------------------------------------------------------------*/
+        .main__contact{
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap:  100px;
+        }
+        .contacts{
+            width: 527px;
+            display: flex;
+            gap: 20px;
+        }
+        .contacts img{
+            width: 352x;
+            height: 254.39px;
+        }
+        .contact__text p{
+            margin: 0;
+        }
+        .info__title {
+            text-decoration: none;
+            font: normal 24px/24px 'Bahnschrift Condensed', sans-serif;
+            color: #2b729d;
+        }
+        .contact__subtitle{
+            color: #606264;
+            font: lighter 14px/14px Roboto, sans-serif;
+        }
+        .contact__text{
+            color: #606264;
+            font:lighter 14px/14px Roboto, sans-serif;
+        }
+        .contact__text p {
+            padding: 3px 0 3px 0;
+        }
+        .contact__text a{
+            text-decoration: none;
+            color: #2b729d;
+        }
+        .main__info h4{
+            font: bold 14px/14px Roboto, sans-serif;
+            color: #606264;
+        }
+        .main__info p{
+            font: lighter 14px/14px Roboto, sans-serif;
+            color: #606264;
+        }
+        .main__info a{
+            text-decoration: none;
+            color: #2b729d;
+            font: lighter 14px/14px Roboto, sans-serif;
+        }
+        .footer{
+            border-top: 2px solid #8ecbef;
+        }
+        .footer__container{
+            display: flex;
+            justify-content: space-between;
+        }
+        .footer__rinh{
+            display: flex;
+            flex-direction: column;
+            width: 214px;
+            align-items: center;
+            margin-top: 15px;
+        }
+        .footer__rinh a{
+            text-decoration: none;
+            text-align: center;
+            color: #2b729d;
+            font: normal 12px/12px Roboto, sans-serif;
+        }
+        .footer__logo{
+            width: 80px;
+            height: 60px;
+        }
+        .footer__rector{
+            width: 214px;
+        }
+        .footer__priem{
+            width: 214px;
+        }
+        .footer__info{
+            width: 214px;
+        }
+        .footer__title{
+            font: normal 18px/18px Roboto, sans-serif;
+            color: #333333;
+        }
+        .footer__subtitle{
+            margin: 0;
+            font: lighter 14px/14px Roboto , sans-serif;
+            color: #555555;
+            padding: 5px 0 0 0;
+        }
+        .footer__social a{
+            text-decoration: none;
+            color: #2b729d;
+        }
+</style>
+<main class="main">
+    <div class="main__container _container">
+        <div class="main__contact">
+            {% for news in all_news %}
+            <div class="contact1 contacts">
+                <img src="{{news.image.url}}" alt="#" class="img-title" width="300">
+                <div class="contact__info">
+                    <h3>
+                        <a class="info__title" href="{% url 'news_detail' news.slug %}">{{news.title}}</a>
+                    </h3>
+                    <div class="contact__subtitle">
+                        <p>{{news.date}}</p>
+                    </div>
+                    <div class="contact__text">
+                        <p>{{teacher.floor}} этаж, кабинет {{teacher.cabinet}}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+{% endblock %}

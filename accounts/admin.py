@@ -4,5 +4,5 @@ from django.contrib.auth import get_user_model
 
 @admin.register(get_user_model())
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('username', 'phone', '_class')
+    list_display = ('username', 'phone', 'clas_s')
     search_fields = ('username', 'phone')

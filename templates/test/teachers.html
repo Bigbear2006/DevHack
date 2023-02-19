@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+      {% for teacher in teachers %}
+      <a href="{% url 'teacher_detail' teacher.slug %}"><h5>{{teacher.name}}</h5></a>
+      {% endfor %}
+</body>
+</html>

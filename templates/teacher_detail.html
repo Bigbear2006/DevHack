@@ -1,14 +1,177 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h4>{{teacher.name}}</h4>
-    <h4>{{teacher.role}}</h4>
-    <img src="{{teacher.photo.url}}">
-    <a href="tel:{{teacher.phone}}">{{teacher.phone}}</a>
-    <a href="mailto:{{teacher.email}}">{{teacher.email}}</a>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+        body{
+            background-color: #EFEFFF;
+        }
+        /*--------------------------------------------------------------------------------------------------------------------*/
+        .wrapper{
+            min-height: 100%;
+        }
+        /*--------------------------------------------------------------------------------------------------------------------*/
+        ._container{
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        /*-----Header---------------------------------------------------------------------------------------------------------*/
+        .header__container{
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 2px solid #8ecbef;
+        }
+        .header__logo img{
+            max-width: 135px;
+            min-height: 115px;
+        }
+        .menu{
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+        .menu__list{
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+        .menu__item{
+            list-style-type: none;
+            text-align: center;
+        }
+        .menu__link{
+            text-decoration: none;
+            text-align: center;
+            color: #707070;
+            font: lighter 33px/34px "Bahnschrift Condensed", sans-serif;
+        }
+        /*-----Main-----------------------------------------------------------------------------------------------------------*/
+        .main__contact{
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap:  100px;
+        }
+        .contacts{
+            width: 527px;
+            display: flex;
+            gap: 20px;
+        }
+        .contacts img{
+            width: 200px;
+            height: 240px;
+        }
+        .contact__text p{
+            margin: 0;
+        }
+        .info__title {
+            text-decoration: none;
+            font: normal 24px/24px 'Bahnschrift Condensed', sans-serif;
+            color: #2b729d;
+        }
+        .contact__subtitle{
+            color: #606264;
+            font: lighter 14px/14px Roboto, sans-serif;
+        }
+        .contact__text{
+            color: #606264;
+            font:lighter 14px/14px Roboto, sans-serif;
+        }
+        .contact__text p {
+            padding: 3px 0 3px 0;
+        }
+        .contact__text a{
+            text-decoration: none;
+            color: #2b729d;
+        }
+        .main__info h4{
+            font: bold 14px/14px Roboto, sans-serif;
+            color: #606264;
+        }
+        .main__info p{
+            font: lighter 14px/14px Roboto, sans-serif;
+            color: #606264;
+        }
+        .main__info a{
+            text-decoration: none;
+            color: #2b729d;
+            font: lighter 14px/14px Roboto, sans-serif;
+        }
+        .footer{
+            border-top: 2px solid #8ecbef;
+        }
+        .footer__container{
+            display: flex;
+            justify-content: space-between;
+        }
+        .footer__rinh{
+            display: flex;
+            flex-direction: column;
+            width: 214px;
+            align-items: center;
+            margin-top: 15px;
+        }
+        .footer__rinh a{
+            text-decoration: none;
+            text-align: center;
+            color: #2b729d;
+            font: normal 12px/12px Roboto, sans-serif;
+        }
+        .footer__logo{
+            width: 80px;
+            height: 60px;
+        }
+        .footer__rector{
+            width: 214px;
+        }
+        .footer__priem{
+            width: 214px;
+        }
+        .footer__info{
+            width: 214px;
+        }
+        .footer__title{
+            font: normal 18px/18px Roboto, sans-serif;
+            color: #333333;
+        }
+        .footer__subtitle{
+            margin: 0;
+            font: lighter 14px/14px Roboto , sans-serif;
+            color: #555555;
+            padding: 5px 0 0 0;
+        }
+        .footer__social a{
+            text-decoration: none;
+            color: #2b729d;
+        }
+</style>
+<main class="main">
+    <div class="main__container _container">
+        <div class="main__contact">
+            <div class="contact1 contacts">
+                <img src="{{teacher.photo.url}}" alt="#">
+                <div class="contact__info">
+                    <h3>
+                        <a class="info__title" href="{% url 'teacher_detail' teacher.slug %}">{{teacher.name}}</a>
+                    </h3>
+                    <div class="contact__subtitle">
+                        <p>{{teacher.role}}</p>
+                    </div>
+                    <div class="contact__text">
+                        <p>{{teacher.floor}} этаж, кабинет {{teacher.cabinet}}</p>
+                        <p><a href="tel:{{teacher.phone}}">{{teacher.phone}}</a></p>
+                        <p><a href="mailto:{{teacher.email}}">{{teacher.email}}</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main__info">
+            <h4>Секретари деканата:</h4>
+            <p>по очной форме обучения: Кенессериева Диана Гумаровна (<a href="#">dianadekanat@yandex.ru</a>)</p>
+            <p>по заочной форме обучения: Леонова Владлена Андреевна (<a href="#">dekanat.zaoch@yandex.ru</a>)</p>
+        </div>
+    </div>
+</main>
+{% endblock %}

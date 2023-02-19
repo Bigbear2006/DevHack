@@ -1,10 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    {{user.username}}
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="main">
+    <div class="main__container _container">
+        <div class="user__container">
+            <div class="user__block">
+                <div class="user__logo"><img src="src/assets/user_logo.svg" alt="NotFound"></div>
+                <div class="user__info">
+                    <div class="user__study_inf">
+                        <p class="user__name">{{user.username}}</p>
+                        <p class="user__class">Класс: {{user.clas_s}}</p>
+                    </div>
+                    <div class="user__contact">
+                        <p class="user__phone">{{user.phone}}</p>
+                        <p class="user__mail">{{user.email}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="user__wait_application">
+                <p>Заявки в ожидании: <span>Математика</span></p>
+            </div>
+        </div>
+        <div class="main__application_cont">
+            <div class="main__accept_appl">
+                <p>Принятые заявки: <span>Физика</span></p>
+            </div>
+            <div class="main__reject_appl">
+                <p>Отклоненные заявки: <span>Русский язык</span></p>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

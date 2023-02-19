@@ -1,13 +1,14 @@
 from django.db import models
+from school.models import Teacher, Subject
 
 days = (
-    ('1', 'Понедельник'),
-    ('2', 'Вторник'),
-    ('3', 'Среда'),
-    ('4', 'Четверг'),
-    ('5', 'Пятница'),
-    ('6', 'Суббота'),
-    ('7', 'Воскресенье'),
+    ('Понедельник', 'Понедельник'),
+    ('Вторник', 'Вторник'),
+    ('Среда', 'Среда'),
+    ('Четверг', 'Четверг'),
+    ('Пятница', 'Пятница'),
+    ('Суббота', 'Суббота'),
+    ('Воскресенье', 'Воскресенье'),
 )
 
 
@@ -31,24 +32,17 @@ class Group(models.Model):
     name = models.CharField(max_length=255, verbose_name='Название группы')
 
     def __str__(self):
-        return self.name
-
-
-class Schedule(models.Model):
-    group = models.ForeignKey(Group, on_delete=models.CASCADE)
-    day = models.CharField(max_length=11, choices=days)
-
-    def __str__(self):
-        return self.day
+        return str(self.name)
 
 
 class Lesson(models.Model):
+    day = models.CharField(max_length=11, choices=days)
     start_time = models.CharField(max_length=5)
-    group = models.ForeignKey(Group, on_delete=models.CASCADE, default=1)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE)
     end_time = models.CharField(max_length=5)
-    name = models.CharField(max_length=255)
-    teacher = models.CharField(max_length=255)
+    name = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, null=True)
     cabinet = models.PositiveBigIntegerField()
 
     def __str__(self):
-        return self.name
+        return str(self.name)

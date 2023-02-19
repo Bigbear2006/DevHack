@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% for day in schedule %}
+    <h3>{{day.day}}</h3>
+    {% for less in day %}
+    {{less.day}}
+    <h4>{{less.name}}</h4>
+    <h4>{{less.teacher}}, {{less.cabinet}}</h4>
+    <h6>{{less.start_time}} - {{less.end_time}}</h6>
+    {% endfor %}
+    <hr>
+    {% endfor %}
+</body>
+</html>

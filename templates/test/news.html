@@ -1,0 +1,20 @@
+{% load socialaccount %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="get" action="{% url 'schedule' %}">
+        <input name="q" type="text" placeholder="Поиск...">
+    </form>
+    <a href="{% url 'teachers' %}">Преподаватели</a> | <a href="{% url 'subjects' %}">Предметы</a><p></p>
+    <a href="{% provider_login_url 'google' %}">Войти</a>
+    {% for news in all_news %}
+    <a href="{%url 'news_detail' news.slug %}"><h3>{{news.title}}</h3></a>
+    <img src="{{news.image.url}}" height="255.8" width="354">
+    <p>{{news.get_about_text}}</p>
+    {% endfor %}
+</body>
+</html>

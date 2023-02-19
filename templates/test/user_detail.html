@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h4>{{user.username}}</h4>
+    <h4>{{user.phone}}</h4>
+    <h4>{{user.clas_s}}</h4>
+    <h4>{{user.email}}</h4>
+    <div class="accepted">
+        {% if accepted %}
+        <h3>Принятые заявки:</h3>
+        {% for acc in accepted %}
+        <h3>{{acc.subject}}</h3>
+        {% endfor %}
+        {% endif %}
+    </div>
+    <div class="not-accepted">
+        {% if not_accepted %}
+        <h3>Заявки в ожидании:</h3>
+        {% for na in not_accepted %}
+        <h3>{{na.subject}}</h3>
+        {% endfor %}
+        {% endif %}
+    </div>
+</body>
+</html>

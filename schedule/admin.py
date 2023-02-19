@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Faculty, Course, Group, Schedule, Lesson
+from .models import Faculty, Course, Group, Lesson
 
 
 class InlineCourseAdmin(admin.StackedInline):

@@ -1,13 +1,100 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    {% for less in schedule %}
-    <h4>{{less}}</h4>
-    {{less.start_time}}
-    {% endfor %}
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap');
+    body{
+        background-color: #EFEFFF;
+    }
+    /*--------------------------------------------------------------------------------------------------------------------*/
+    .wrapper{
+        min-height: 100%;
+    }
+    /*--------------------------------------------------------------------------------------------------------------------*/
+    ._container{
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    /*-----Header---------------------------------------------------------------------------------------------------------*/
+    .header__container{
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 2px solid #8ecbef;
+    }
+    .header__logo img{
+        max-width: 135px;
+        min-height: 115px;
+    }
+    .menu{
+        margin: 0;
+        display: flex;
+        align-items: center;
+    }
+    .menu__list{
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 50px;
+        flex-wrap: wrap;
+    }
+    .menu__item{
+        list-style-type: none;
+        text-align: center;
+    }
+    .menu__link {
+        text-decoration: none;
+        text-align: center;
+        color: #707070;
+        font: lighter 33px/34px "Bahnschrift Condensed", sans-serif;
+    }
+    /*--------------------------------------------------------------------------------------------------------------------*/
+    .rasp__container{
+        border-bottom: 2px solid #707070;
+    }
+    .rasp__title{
+        font: bold 28px/28px "PT Sans", sans-serif;
+    }
+    .rasp__date{
+        font: bold 19px/19px "PT Sans", sans-serif;
+    }
+    .subject__name{
+        font: bold 19px/19px "PT Sans", sans-serif ;
+    }
+    .subject__time{
+        font: 300 19px/19px "PT Sans", sans-serif;
+    }
+    .subject__prep-cab{
+        font: 300 19px/19px "PT Sans", sans-serif;
+    }
+    @media (max-width: 1200px) {
+        ._container{
+            padding: 0px 10px 0px 10px;
+        }
+    }
+</style>
+<main class="main">
+    <div class="main__container _container">
+        <div class="rasp__title">
+            <h2>Расписание предметов</h2>
+        </div>
+        {% for less in schedule %}
+        <div class="rasp__container">
+            <div class="rasp__date">
+                <p>{{less.day}}</p>
+            </div>
+            <div class="subject__container">
+                <div class="subject__name">
+                    <p>{{less.subject}}</p>
+                </div>
+                <div class="subject__time">
+                    <p>{{less.start_time}} - {{less.end_time}}</p>
+                </div>
+                <div class="subject__prep-cab">
+                    <p>{{less.teacher}}, ауд. {{less.cabinet}}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+{% endblock %}

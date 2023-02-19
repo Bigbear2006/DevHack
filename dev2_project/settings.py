@@ -17,7 +17,7 @@ SECRET_KEY = getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.0.102', '127.0.0.1']
+ALLOWED_HOSTS = ['192.168.0.102', '127.0.0.1', '79.137.194.19']
 
 
 # Application definition
@@ -35,10 +35,11 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'crispy_forms',
+    'crispy_bootstrap5',
 
     'accounts',
     'school',
-    'schedule',
 ]
 
 MIDDLEWARE = [
@@ -118,7 +119,15 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATIC_ROOT = path.join(BASE_DIR, 'static')
+
 STATIC_FILES_DIRS = [path.join(BASE_DIR, 'static')]
+
+# STATICFILES_FINDERS = (
+#     'django.contrib.staticfiles.finders.FileSystemFinder',
+#     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+#     'django.contrib.staticfiles.finders.DefaultStorageFinder',
+# )
 
 MEDIA_URL = 'media/'
 
@@ -133,7 +142,7 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 
 SITE_ID = 2
 
-LOGIN_REDIRECT_URL = 'settings'
+LOGIN_REDIRECT_URL = 'news'
 
 LOGOUT_REDIRECT_URL = 'news'
 
@@ -157,3 +166,8 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
